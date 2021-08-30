@@ -1,0 +1,70 @@
+#include <iostream>
+#include <iomanip>
+#include <cstdio>
+#include <string.h>
+#include<stdlib.h>
+
+using namespace std;
+
+// structure to store customer info
+
+struct customer_info{
+
+char fullname[30];
+char ID[30];
+int age;
+char gender;
+bool available;
+
+}customer[100];
+
+
+void menu();
+
+int main(){
+menu();
+
+
+return 0;
+
+}
+
+void menu()
+{
+	int choice;
+	cout<<"\n\n\n\n";
+	cout << endl;
+
+	cout<<"\n\t  \t\t\t\t\t  1. CUSTOMER SERVICE";
+    cout<<"\n\t  \t\t\t\t\t  2. SHOW CUSTOMER DATA";
+    cout<<"\n\t  \t\t\t\t\t  3. SHOW CAR DATA";
+	cout<<"\n\t  \t\t\t\t\t  4. DELETE CAR";
+	cout<<"\n\t  \t\t\t\t\t  5. RESET AVAILABLE CAR";
+	cout<<"\n\t  \t\t\t\t\t  6. LOG OFF"<<endl<<"\n";
+	cout<<"\t  |\t\t\t\t\tINPUT   :";
+	cin>>choice;
+
+
+system("cls");
+switch(choice){
+case 1:
+
+break;
+case 2:
+
+break;
+case 3:
+
+break;
+case 4:
+
+break;
+case 5:
+
+break;
+case 6:
+    exit(0);
+break;
+
+
+}}
