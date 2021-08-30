@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <iomanip>
 #include <cstdio>
@@ -12,22 +11,32 @@ struct address{
 string  phone_number;
 char city[20];
 char town[20];
-char email[30];
-int home_phone_number;
+char email[40];
+
 
 };
 
 struct customer_info{
 
 char fullname[30];
-char ID[30];
+int ID;
 int age;
 char gender;
 bool available;
 address cust_address;
-}customer[100];
-// structure to record rental cars
+}customer[100]={{"samuel noah",1,23,'M',true,"Wolayta","Bodity","samuelnoah66@gmail"},// initialized data are sample they will store on other device latter
+                {"selamu dawit",2,23,'M',true,"Wolayta","Bodity","selamudaw@gmail"},
+                 {"yordanos yadessa",3,23,'F',true,"AA","jemo","yordanosyades@gmail"},
+                 {"yohannis mendistu",4,23,'M',true,"AA","jemo","yohannismendi@gmail"},
+                 {"zekarias  tesfaye",5,23,'M',true,"AA","jemo","zekariastesfa@gmail"}
+
+
+
+
+};
+//structure to store carsal car info
 struct car_info{
+
 char brand[20];
 char model[20];
 char colour[20];
@@ -39,31 +48,99 @@ int category_code;
 bool available;
 int car_id;
 string rented;
-}cars[100];
-
+}cars[100]={{"Hyundai","2016MD","black","100km/hr","ET20012",150,3000,1,true,1},// this  data are sample! latter we will
+                                                                                 // store them on external storage
+             {"BMW","2010QW","yellow","150km/hr","ET20012",300,6000,2,true,2},
+             {"Audi","2018DS","Blue","120km/hr","ET20012",100,2000,1,true,3},
+             {"Tesla","2017LA","Red","110km/hr","ET20012",200,3400,2,true,4},
+             {"Skoda","2018OW","Brown","100km/hr","ET20012",300,5800,3,true,5},
+             {"Volswag","2005Ps","Silver","140km/hr","ET20012",120,2000,2,true,6},
+             {"Toyota","2008PW","Black","150km/hr","ET20012",140,3000,1,true,7},
+             {"Ford","2016SA","grey","130km/hr","ET20012",240,3000,1,true,8},
+               {"Merc","2018AS","Red","180km/hr","ET20012",140,2800,3,true,9}
+};
 
 void menu();
+void toTerminateOrContinue();
+void  password();
 void cust_record(customer_info customer[]);
+void car_sample(car_info cars[]);
+void availble_cars(car_info cars[]);
+int car_count(car_info cars[]);
 void add_cars(car_info cars[]);
+int main()
+{
 
-int main(){
-menu();
+  menu();
+//password();
 
 
-return 0;
+    return 0;
+}
+
+void toTerminateOrContinue(){
+char toContinue;
+cout<<endl<<endl<<endl<<"press any key to continue\n press 0 to  exit ";
+
+cin>>toContinue;
+system("cls");
+if(toContinue!='0')
+ 	menu();
+ 	else
+exit(0);
+
+}
+//function to check the user password in correct or not
+void  password(){
+    int trial=0;
+    string username,pass;
+     string passwords="kindness4all";
+     string name="GROUP1";//we have to use string compare
+     c:
+
+    cout<<"\n\n\n\n\n\n\n\n\n\n";
+
+   cout<<"\t\t\t\t\t\tusername:";
+   cin>>username;
+  cout<<"\t\t\t\t\t\tpasssword:";
+    cin>>pass;
+
+   if(passwords==pass&&username==name){
+ 	system("cls");
+        menu();}
+   else{
+    system("cls");
+    cout<<"\n\n\n\n\n\n";
+   cout<<"\t\t\t\t\t\tincorrect password or user name please try again\n\n\n ";
+   trial++;
+if (trial==4){
+cout<<"many trial good bye";
+ exit(0);
+}
+
+else{
+goto c;
+}
+   }
 
 }
 
+
+// function to display menu to user
 void menu()
-{
+{cout<<setw(50)<<"========================================================================================================================"<<endl;
+cout<<setw(70)<<" WELCOME TO KINDNESS CAR RENTAL "<<endl;
+cout<<setw(50)<<"========================================================================================================================"<<endl;
+
 	int choice;
 	cout<<"\n\n\n\n";
 	cout << endl;
 
+
 	cout<<"\n\t  \t\t\t\t\t  1. CUSTOMER SERVICE";
 	cout<<"\n\t  \t\t\t\t\t  2. ADD CAR";
-    cout<<"\n\t  \t\t\t\t\t  3. SHOW CUSTOMER DATA";
-    cout<<"\n\t  \t\t\t\t\t  4. SHOW CAR DATA";
+    cout<<"\n\t  \t\t\t\t\t  3. SHOW CAR DATA";
+    cout<<"\n\t  \t\t\t\t\t  4. SHOW CUSTOMER DATA";
 	cout<<"\n\t  \t\t\t\t\t  5. DELETE CAR";
 	cout<<"\n\t  \t\t\t\t\t  6. RESET AVAILABLE CAR";
 	cout<<"\n\t  \t\t\t\t\t  7. LOG OFF"<<endl<<"\n";
@@ -71,22 +148,24 @@ void menu()
 	cin>>choice;
 
 
+
 system("cls");
 switch(choice){
 case 1:
-cust_record(customer);
+    cust_record(customer);
 break;
 case 2:
-add_cars(cars);
+ add_cars(cars);
 break;
 case 3:
+availble_cars(cars);
 
 break;
 case 4:
-
+    //newUserPass();
 break;
 case 5:
-
+    //	resetAvail();
 break;
 case 6:
     exit(0);
@@ -94,23 +173,22 @@ break;
 
 
 }}
+
+
+// function to record new customer;
 void cust_record(customer_info customer[]){
-int choice,cust_num;
+int choice;
 cout<<setw(50)<<"========================================================================================================================"<<endl;
-cout<<setw(70)<<" CUSTOMER SERVICE PAGE"<<endl;
+cout<<setw(70)<<" CUSTOMER REGISTREATION PAGE"<<endl;
 cout<<setw(50)<<"========================================================================================================================"<<endl;
 
  cout<<"\n\n\n\n\n";
 cout<<"\t\t\t\t 1. NEW CUSTOMER \n\t\t\t\t 2. AVAILABLE \n\n";
 cout<<setw(40)<<"INPUT:";
 cin>>choice;
-
 if(choice==1){
-        cout<<"\n\n";
-cout<<setw(50)<<"Enter number of customer:";
-cin>>cust_num;
-for(int i=0;i<cust_num;i++){
-        customer[i].available=true;
+    int i=choice;
+   customer[i].available=true;
     cin.ignore();
     cout<<"\t\t\t\tFull Name"<<setw(5)<<":";
     gets(customer[i].fullname);
@@ -122,8 +200,6 @@ for(int i=0;i<cust_num;i++){
     cin>>customer[i].gender;
     cout<<"\t\t\t\tphone num"<<setw(5)<<":";
     cin>>customer[i].cust_address.phone_number;
-    cout<<"\t\t\t\tHPhone Num"<<setw(4)<<":";
-    cin>>customer[i].cust_address.home_phone_number;
     cout<<"\t\t\t\tCity     "<<setw(5)<<":";
     cin.ignore();
     gets(customer[i].cust_address.city);
@@ -134,15 +210,64 @@ for(int i=0;i<cust_num;i++){
     cin>>customer[i].cust_address.email;
     cout<<"\n\n\n\n\n\n:";
 cout<<setw(70)<<"registered successfully"<<endl;
-}
+
 }}
+//count avaliable cars;
+int car_count(car_info cars[]){
+int numberofcars=0;
+    for(int i=0;i<100;i++){
+if(cars[i].available==true)
+    numberofcars++;
+
+    }
+
+return numberofcars;
+}
+
+int cust_count(customer_info customer[]){
+int numberofcust=0;
+    for(int i=0;i<100;i++){
+if(customer[i].available==true)
+    numberofcust++;
+
+    }
+
+return numberofcust;
+}
+
+void availble_cars(car_info cars[])
+{
+
+
+	int choice;
+	cout<<"\n\n";
+
+	cout << endl;
+
+	cout << "     Plate Number\t Brand\t      Model\t  max speed         Color   Rate Per Hour     Rate Per 24 Hour   car ID  " << endl;
+	cout << "     ================================================================================================================" << endl;
+	int counted=car_count(cars);
+	for (int i = 0; i <counted; i++)
+	{
+		cout << "     " << cars[i].plate_num << "\t        " << cars[i].brand << "\t     " << cars[i].model << "\t   " << cars[i].max_speed << "\t     "
+			 << cars[i].colour << "\t  " <<cars[i].rate_per_hour << "\t\t    "  << cars[i].rate_per_day<< "\t    "<<cars[i].category_code << "\t\t       "<< endl;
+	}
+	cout << "\n\n";
+
+	cout<<"\n\t  \t\t\t\t\t" ;
+
+	toTerminateOrContinue();
+
+
+
+
+
+
+}
 
 void add_cars(car_info cars[]){
-int car_num,choice;
-cout<<"\n\n";
-cout<<setw(50)<<"Enter number of cars:";
-cin>>car_num;
-for(int i=0;i<car_num;i++){
+int counted=car_count(cars);
+int i=counted;
 cout<<setw(50)<<"========================================================================================================================"<<endl;
 cout<<setw(70)<<" NEW CAR RECORD PAGE"<<endl;
 cout<<setw(50)<<"========================================================================================================================\n\n\n\n" << endl;
@@ -164,13 +289,6 @@ cout<<setw(50)<<"category";
 cin>>cars[i].category_code;
 cars[i].car_id=i;
 cars[i].available=true;
-}
-cout<<"\n\n\n1.BACK TO MENU"<<endl;
-cout<<"\n2.TO EXIT";
-cin>>choice;
-if(choice==1){
-system("cls");
-menu();}
-else
-exit(0);
+toTerminateOrContinue();
+
 }
