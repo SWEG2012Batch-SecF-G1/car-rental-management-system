@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <iomanip>
 #include <cstdio>
@@ -16,20 +17,19 @@ string home_phone_number;
 
 };
 
-
 struct customer_info{
 
 char fullname[30];
 char ID[30];
 int age;
 char gender;
-address cust_address;
 bool available;
-
+address cust_address;
 }customer[100];
 
 
 void menu();
+void cust_record(customer_info customer[]);
 
 int main(){
 menu();
@@ -51,14 +51,14 @@ void menu()
 	cout<<"\n\t  \t\t\t\t\t  4. DELETE CAR";
 	cout<<"\n\t  \t\t\t\t\t  5. RESET AVAILABLE CAR";
 	cout<<"\n\t  \t\t\t\t\t  6. LOG OFF"<<endl<<"\n";
-	cout<<"\t  |\t\t\t\t\tINPUT   :";
+	cout<<"\t    \t\t\t\t\tINPUT   :";
 	cin>>choice;
 
 
 system("cls");
 switch(choice){
 case 1:
-
+cust_record(customer);
 break;
 case 2:
 
@@ -77,4 +77,46 @@ case 6:
 break;
 
 
+}}
+void cust_record(customer_info customer[]){
+int choice,cust_num;
+cout<<setw(50)<<"========================================================================================================================"<<endl;
+cout<<setw(70)<<" CUSTOMER SERVICE PAGE"<<endl;
+cout<<setw(50)<<"========================================================================================================================"<<endl;
+
+ cout<<"\n\n\n\n\n";
+cout<<"\t\t\t\t 1. NEW CUSTOMER \n\t\t\t\t 2. AVAILABLE \n\n";
+cout<<setw(40)<<"INPUT:";
+cin>>choice;
+
+if(choice==1){
+        cout<<"\n\n";
+cout<<setw(50)<<"Enter number of customer:";
+cin>>cust_num;
+for(int i=0;i<cust_num;i++){
+        customer[i].available=true;
+    cin.ignore();
+    cout<<"\t\t\t\tFull Name"<<setw(5)<<":";
+    gets(customer[i].fullname);
+    cout<<"\t\t\t\tID       "<<setw(5)<<":";
+    cin>>customer[i].ID;
+    cout<<"\t\t\t\tAge      "<<setw(5)<<":";
+    cin>>customer[i].age;
+    cout<<"\t\t\t\tGender   "<<setw(5)<<":";
+    cin>>customer[i].gender;
+    cout<<"\t\t\t\tphone num"<<setw(5)<<":";
+    cin>>customer[i].cust_address.phone_number;
+    cout<<"\t\t\t\tHPhone Num"<<setw(4)<<":";
+    cin>>customer[i].cust_address.home_phone_number;
+    cout<<"\t\t\t\tCity     "<<setw(5)<<":";
+    cin.ignore();
+    gets(customer[i].cust_address.city);
+    cout<<"\t\t\t\tTown      "<<setw(5)<<":";
+    cin.ignore();
+    gets(customer[i].cust_address.town);
+    cout<<"\t\t\t\tEmail    "<<setw(5)<<":";
+    cin>>customer[i].cust_address.email;
+    cout<<"\n\n\n\n\n\n\:";
+cout<<setw(70)<<"registered successfully"<<endl;
+}
 }}
