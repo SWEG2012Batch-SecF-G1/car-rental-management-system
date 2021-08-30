@@ -72,12 +72,12 @@ int main()
 {
 
   menu();
-//password();
+password();  
 
 
     return 0;
 }
-
+//function used  allow user eather to back to menu or exit from the software app
 void toTerminateOrContinue(){
 char toContinue;
 cout<<endl<<endl<<endl<<"press any key to continue\n press 0 to  exit ";
@@ -90,6 +90,8 @@ if(toContinue!='0')
 exit(0);
 
 }
+
+
 //function to check the user password in correct or not
 void  password(){
     int trial=0;
