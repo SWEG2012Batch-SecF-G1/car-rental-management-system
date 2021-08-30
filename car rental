@@ -7,6 +7,15 @@
 using namespace std;
 
 // structure to store customer info
+struct address{
+string  phone_number;
+char city[20];
+char town[20];
+char email[30];
+string home_phone_number;
+
+};
+
 
 struct customer_info{
 
@@ -14,6 +23,7 @@ char fullname[30];
 char ID[30];
 int age;
 char gender;
+address cust_address;
 bool available;
 
 }customer[100];
