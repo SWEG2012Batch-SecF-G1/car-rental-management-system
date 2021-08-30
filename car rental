@@ -13,7 +13,7 @@ string  phone_number;
 char city[20];
 char town[20];
 char email[30];
-string home_phone_number;
+int home_phone_number;
 
 };
 
@@ -26,10 +26,25 @@ char gender;
 bool available;
 address cust_address;
 }customer[100];
+// structure to record rental cars
+struct car_info{
+char brand[20];
+char model[20];
+char colour[20];
+char max_speed[10];
+char plate_num[10];
+float rate_per_hour;
+float rate_per_day;
+int category_code;
+bool available;
+int car_id;
+string rented;
+}cars[100];
 
 
 void menu();
 void cust_record(customer_info customer[]);
+void add_cars(car_info cars[]);
 
 int main(){
 menu();
@@ -46,11 +61,12 @@ void menu()
 	cout << endl;
 
 	cout<<"\n\t  \t\t\t\t\t  1. CUSTOMER SERVICE";
-    cout<<"\n\t  \t\t\t\t\t  2. SHOW CUSTOMER DATA";
-    cout<<"\n\t  \t\t\t\t\t  3. SHOW CAR DATA";
-	cout<<"\n\t  \t\t\t\t\t  4. DELETE CAR";
-	cout<<"\n\t  \t\t\t\t\t  5. RESET AVAILABLE CAR";
-	cout<<"\n\t  \t\t\t\t\t  6. LOG OFF"<<endl<<"\n";
+	cout<<"\n\t  \t\t\t\t\t  2. ADD CAR";
+    cout<<"\n\t  \t\t\t\t\t  3. SHOW CUSTOMER DATA";
+    cout<<"\n\t  \t\t\t\t\t  4. SHOW CAR DATA";
+	cout<<"\n\t  \t\t\t\t\t  5. DELETE CAR";
+	cout<<"\n\t  \t\t\t\t\t  6. RESET AVAILABLE CAR";
+	cout<<"\n\t  \t\t\t\t\t  7. LOG OFF"<<endl<<"\n";
 	cout<<"\t    \t\t\t\t\tINPUT   :";
 	cin>>choice;
 
@@ -61,7 +77,7 @@ case 1:
 cust_record(customer);
 break;
 case 2:
-
+add_cars(cars);
 break;
 case 3:
 
@@ -116,7 +132,45 @@ for(int i=0;i<cust_num;i++){
     gets(customer[i].cust_address.town);
     cout<<"\t\t\t\tEmail    "<<setw(5)<<":";
     cin>>customer[i].cust_address.email;
-    cout<<"\n\n\n\n\n\n\:";
+    cout<<"\n\n\n\n\n\n:";
 cout<<setw(70)<<"registered successfully"<<endl;
 }
 }}
+
+void add_cars(car_info cars[]){
+int car_num,choice;
+cout<<"\n\n";
+cout<<setw(50)<<"Enter number of cars:";
+cin>>car_num;
+for(int i=0;i<car_num;i++){
+cout<<setw(50)<<"========================================================================================================================"<<endl;
+cout<<setw(70)<<" NEW CAR RECORD PAGE"<<endl;
+cout<<setw(50)<<"========================================================================================================================\n\n\n\n" << endl;
+cout<<setw(50)<<"Plate Number:";
+cin>> cars[i].plate_num;
+cout<<setw(50)<<"Brand:";
+cin>>cars[i].brand;
+cout<<setw(50)<<"Model:";
+cin>>cars[i].model;
+cout<<setw(50)<<"max speed:";
+cin>>cars[i].max_speed;
+cout<<setw(50)<<"Color:";
+cin>>cars[i].colour;
+cout<<setw(50)<<"Rate Per Hour:";
+cin>>cars[i].rate_per_hour;
+cout<<setw(50)<<"Rate Per day :";
+cin>>cars[i].rate_per_day;
+cout<<setw(50)<<"category";
+cin>>cars[i].category_code;
+cars[i].car_id=i;
+cars[i].available=true;
+}
+cout<<"\n\n\n1.BACK TO MENU"<<endl;
+cout<<"\n2.TO EXIT";
+cin>>choice;
+if(choice==1){
+system("cls");
+menu();}
+else
+exit(0);
+}
