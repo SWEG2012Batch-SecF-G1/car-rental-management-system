@@ -24,7 +24,7 @@ int age;
 char gender;
 bool available;
 address cust_address;
-}customer[100]={{"samuel noah",1,23,'M',true,"Wolayta","Bodity","samuelnoah66@gmail"},// initialized data are sample they will store on other device latter
+}customer[100]={{"samuel noah",1,23,'M',true,"Wolayta","Bodity","samuelnoah66@gmail"},// initialized data are sample the will store on other device latter
                 {"selamu dawit",2,23,'M',true,"Wolayta","Bodity","selamudaw@gmail"},
                  {"yordanos yadessa",3,23,'F',true,"AA","jemo","yordanosyades@gmail"},
                  {"yohannis mendistu",4,23,'M',true,"AA","jemo","yohannismendi@gmail"},
@@ -48,8 +48,9 @@ int category_code;
 bool available;
 int car_id;
 string rented;
-}cars[100]={{"Hyundai","2016MD","black","100km/hr","ET20012",150,3000,1,true,1},// this  data are sample! latter we will
-                                                                                 // store them on external storage
+}cars[100]={{"none","none","ne","none","none",0000,000,0,false,0},
+            {"Hyundai","2016MD","black","100km/hr","ET20012",150,3000,1,false,1},// this  data are sample! latter we will
+                                                                        // store them on external storage
              {"BMW","2010QW","yellow","150km/hr","ET20012",300,6000,2,true,2},
              {"Audi","2018DS","Blue","120km/hr","ET20012",100,2000,1,true,3},
              {"Tesla","2017LA","Red","110km/hr","ET20012",200,3400,2,true,4},
@@ -68,16 +69,17 @@ void car_sample(car_info cars[]);
 void availble_cars(car_info cars[]);
 int car_count(car_info cars[]);
 void add_cars(car_info cars[]);
+void delete_car(car_info cars[]);
 int main()
 {
 
   menu();
-password();  
+//password();
 
 
     return 0;
 }
-//function used  allow user eather to back to menu or exit from the software app
+
 void toTerminateOrContinue(){
 char toContinue;
 cout<<endl<<endl<<endl<<"press any key to continue\n press 0 to  exit ";
@@ -90,8 +92,6 @@ if(toContinue!='0')
 exit(0);
 
 }
-
-
 //function to check the user password in correct or not
 void  password(){
     int trial=0;
@@ -161,13 +161,14 @@ case 2:
 break;
 case 3:
 availble_cars(cars);
+toTerminateOrContinue();
 
 break;
 case 4:
     //newUserPass();
 break;
 case 5:
-    //	resetAvail();
+     delete_car(cars);
 break;
 case 6:
     exit(0);
@@ -218,18 +219,18 @@ cout<<setw(70)<<"registered successfully"<<endl;
 int car_count(car_info cars[]){
 int numberofcars=0;
     for(int i=0;i<100;i++){
-if(cars[i].available==true)
+if(cars[i].available==true||cars[i].car_id!=0)
     numberofcars++;
 
     }
-
+cout<<numberofcars;
 return numberofcars;
 }
 
 int cust_count(customer_info customer[]){
 int numberofcust=0;
     for(int i=0;i<100;i++){
-if(customer[i].available==true)
+if(customer[i].available==true||customer[i].available==false)
     numberofcust++;
 
     }
@@ -249,16 +250,16 @@ void availble_cars(car_info cars[])
 	cout << "     Plate Number\t Brand\t      Model\t  max speed         Color   Rate Per Hour     Rate Per 24 Hour   car ID  " << endl;
 	cout << "     ================================================================================================================" << endl;
 	int counted=car_count(cars);
-	for (int i = 0; i <counted; i++)
-	{
+	for (int i = 0; i <100; i++)
+	{   if(cars[i].available==true){
 		cout << "     " << cars[i].plate_num << "\t        " << cars[i].brand << "\t     " << cars[i].model << "\t   " << cars[i].max_speed << "\t     "
 			 << cars[i].colour << "\t  " <<cars[i].rate_per_hour << "\t\t    "  << cars[i].rate_per_day<< "\t    "<<cars[i].category_code << "\t\t       "<< endl;
-	}
+	}}
 	cout << "\n\n";
 
 	cout<<"\n\t  \t\t\t\t\t" ;
 
-	toTerminateOrContinue();
+
 
 
 
@@ -268,7 +269,7 @@ void availble_cars(car_info cars[])
 }
 
 void add_cars(car_info cars[]){
-int counted=car_count(cars);
+int counted=car_count(cars)+1;
 int i=counted;
 cout<<setw(50)<<"========================================================================================================================"<<endl;
 cout<<setw(70)<<" NEW CAR RECORD PAGE"<<endl;
@@ -292,5 +293,36 @@ cin>>cars[i].category_code;
 cars[i].car_id=i;
 cars[i].available=true;
 toTerminateOrContinue();
+
+}
+void delete_car(car_info cars[]){
+int id,choice;
+cout<<setw(50)<<"========================================================================================================================"<<endl;
+cout<<setw(70)<<" DELETE CAR RECORD PAGE"<<endl;
+cout<<setw(50)<<"========================================================================================================================\n\n\n\n" << endl;
+cout<<"\n\n";
+availble_cars(cars);
+
+cout<<"\n\n\n";
+	cout <<setw(30)<<" car ID:";
+	cin>>id;
+cout<<setw(30)<<"Do you want to delete "<<"car  brand :"<<cars[id].brand <<" model :"<<cars[id].model<<"?\n\n"<<endl;
+cout<<setw(30)<<"1.yes      2.no\t";
+cout<<setw(30)<<"INPUT:";
+cin>>choice;
+if(choice==1){
+cars[id].available=false;
+
+}
+
+toTerminateOrContinue();
+
+
+}
+
+void rented_car(car_info cars[]){
+
+
+
 
 }
