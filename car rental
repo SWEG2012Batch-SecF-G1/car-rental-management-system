@@ -701,26 +701,181 @@ A:
 
 
 
+void search_coustmores(rented_cars_info rcars[],customer_info customer[],car_info cars[])
+	{
+ time_t now = time(0);
+   tm *ltm = localtime(&now);
+	int b;
+			cout<<"\t\t\t\tEnter 1 to Search by coustmore name "<<endl;
+			cout<<"\t\t\t\tEnter 2 to Search by coustmore Id number\n\nEnter: ";
+
+		cin>>b;
+	if(b==1)
+	{
+
+			char user_name[20];
+			cout<<"Enter the user name: ";
+			cin.ignore();
+			gets(user_name);
+			int x=cust_count(customer);
+			int y=sizes;
+   			const char separator    = ' ';
+   			 const int nameWidth     = 15;
+   			 const int numWidth      = 15;
+
+			for(int i=1;i<=x;i++)
+			{
+				if(strcmp(customer[i].fullname,user_name)==0)     //&&id_number==customer[i].ID
+				{
 
 
+					int j=0;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Attribute"<<"Value" <<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Cr_Name"<<customer[i].fullname<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"CoutmerID"<<customer[i].ID<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Sex"<<customer[i].gender<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Age"<<customer[i].age<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Email"<<customer[i].cust_address.email<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"PhoneNo"<<customer[i].cust_address.phone_number<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"City"<<customer[i].cust_address.city<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Town"<<customer[i].cust_address.town<<endl;
 
-cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Rented by"<<customer[j].fullname<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Coustomer ID"<<customer[j].ID<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Sex"<<customer[j].gender<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Age"<<customer[j].age<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Email"<<customer[j].cust_address.email<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"PhoneNo"<<customer[j].cust_address.phone_number<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"City"<<customer[j].cust_address.city<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Town"<<customer[j].cust_address.town<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Dueto"<<rcars[j].duration+ltm->tm_mday <<"/"<<1 + ltm->tm_mon;
+					if(customer[i].available==false)
+						{
+							cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Situation"<<"Not rented" <<endl;
+
+							break;
+						}
+					else
+					for(j=1;j<=y;j++)
+						{
+							if(rcars[i].plate_num==cars[j].plate_num)
+							break;
+						}
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Brand"<<cars[j].brand<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Model"<<cars[j].model<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Color"<<cars[j].colour<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Car ID"<<cars[j].car_id<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Speed"<<cars[j].max_speed<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Rate"<<cars[j].rate_per_hour<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Dueto"<<rcars[j].duration+ltm->tm_mday<<"/"<<1 + ltm->tm_mon;
 					cout<<"/"<<1900 + ltm->tm_year<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Price"<<rcars[j].price<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Price"<<rcars[i].price<<endl;
 				}
 
 			}
 
 
 	}
+	else
+	{
 
-	
+			int id_number;
+			cout<<"Enter the coustmoer Id number: ";
+			cin>>id_number;
 
+			int x=cust_count(customer);
+			int y=sizes;
+		   	const char separator    = ' ';
+		    const int nameWidth     = 15;
+		    const int numWidth      = 15;
+
+			for(int i=1;i<=x;i++)
+			{
+				if(customer[i].ID==id_number)     //&&id_number==
+				{
+
+					int j=0;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Attribute"<<"Value" <<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Cr_Name"<<customer[i].fullname<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"CoutmerID"<<customer[i].ID<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Sex"<<customer[i].gender<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Age"<<customer[i].age<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Email"<<customer[i].cust_address.email<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"PhoneNo"<<customer[i].cust_address.phone_number<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"City"<<customer[i].cust_address.city<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Town"<<customer[i].cust_address.town<<endl;
+
+					if(customer[i].available==false)
+						{
+							cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Situation"<<"Not rented" <<endl;
+							break;
+						}
+					else
+					for(j=1;j<=y;j++)
+						{
+							if(rcars[i].plate_num==cars[j].plate_num)
+							break;
+						}
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Rented car"<<cars[j].brand<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Model"<<cars[j].model<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Color"<<cars[j].colour<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Car ID"<<cars[j].car_id<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Plate"<<cars[j].plate_num<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Speed"<<cars[j].max_speed<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Rate"<<cars[j].rate_per_hour<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Dueto"<<rcars[j].duration+ltm->tm_mday  <<"/"<<1 + ltm->tm_mon;
+					cout<<"/"<<1900 + ltm->tm_year<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Price"<<rcars[i].price<<endl;
+				}
+
+			}
+
+
+	}
+	toTerminateOrContinue();
+
+	}
+
+
+
+void search_cars(rented_cars_info rcar[],customer_info customer[],car_info cars[])
+	{
+ time_t now = time(0);
+   tm *ltm = localtime(&now);
+			int c ,trys=0;
+			A:
+			cout<<"\n\n\n\n\t\t\t\tEnter 1 to Search  by car Id number\n"<<endl;
+			cout<<"\t\t\t\tEnter 2 to Seaarch by car plate\n\n\t\t\t\t\tEnter: ";
+			cin>>c;
+	if(c==1)
+	{
+          system("cls");
+			int id_number;
+			cout<<"\n\n\t\t\t\t\Enter the car ID nuber: ";
+			cin>>id_number;
+
+			int x=cust_count(customer);
+			int y=sizes;
+   			const char separator    = ' ';
+   			 const int nameWidth     = 15;
+   			 const int numWidth      = 15;
+
+			for(int i=1;i<=y;i++)
+			{
+				if(cars[i].car_id==id_number)    //&&id_number==customer[i].ID
+				{
+					int j=0;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Attribute"<<"Value" <<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Brand"<<cars[i].brand<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Model"<<cars[i].model<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Color"<<cars[i].colour<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Car ID"<<cars[i].car_id<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Plate"<<cars[i].plate_num<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Speed"<<cars[i].max_speed<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Rate"<<cars[i].rate_per_hour<<endl;
+					if(cars[i].available==true)
+					{
+
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Availability"<<"Available " <<endl;
+					break;
+					}
+					else
+						for(j=1;j<=x;j++)
+						{
+							if(cars[i].plate_num==rcars[j].plate_num)
+							break;
+						}
+
+
+					
