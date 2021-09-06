@@ -704,5 +704,23 @@ A:
 
 
 
-//function to search information in 4 ways
+cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Rented by"<<customer[j].fullname<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Coustomer ID"<<customer[j].ID<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Sex"<<customer[j].gender<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Age"<<customer[j].age<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Email"<<customer[j].cust_address.email<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"PhoneNo"<<customer[j].cust_address.phone_number<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"City"<<customer[j].cust_address.city<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Town"<<customer[j].cust_address.town<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Dueto"<<rcars[j].duration+ltm->tm_mday <<"/"<<1 + ltm->tm_mon;
+					cout<<"/"<<1900 + ltm->tm_year<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Price"<<rcars[j].price<<endl;
+				}
+
+			}
+
+
+	}
+
+	
 
