@@ -701,6 +701,11 @@ A:
 
 
 
+
+
+
+//function to search information in 4 ways
+
 void search_coustmores(rented_cars_info rcars[],customer_info customer[],car_info cars[])
 	{
  time_t now = time(0);
@@ -878,7 +883,107 @@ void search_cars(rented_cars_info rcar[],customer_info customer[],car_info cars[
 						}
 
 
-				
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Rented by"<<customer[j].fullname<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Coustomer ID"<<customer[j].ID<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Sex"<<customer[j].gender<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Age"<<customer[j].age<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Email"<<customer[j].cust_address.email<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"PhoneNo"<<customer[j].cust_address.phone_number<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"City"<<customer[j].cust_address.city<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Town"<<customer[j].cust_address.town<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Dueto"<<rcars[j].duration+ltm->tm_mday <<"/"<<1 + ltm->tm_mon;
+					cout<<"/"<<1900 + ltm->tm_year<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Price"<<rcars[j].price<<endl;
+				}
+
+			}
+
+
+	}
+
+	else if (c==2)
+	{
+
+			string plate;
+			 system("cls");
+			cout<<"\t\t\t\tEnter the car Plate: ";
+			cin>>plate;
+
+			int x=cust_count(customer);
+			int y=sizes;
+   			const char separator    = ' ';
+   			 const int nameWidth     = 15;
+   			 const int numWidth      = 15;
+
+			for(int i=1;i<=y;i++)
+			{
+				if(cars[i].plate_num==plate)    //&&id_number==customer[i].ID
+				{
+					int j=0;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Attribute"<<"Value" <<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Brand"<<cars[i].brand<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Model"<<cars[i].model<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Color"<<cars[i].colour<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Car ID"<<cars[i].car_id<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Plate"<<cars[i].plate_num<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Speed"<<cars[i].max_speed<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Rate"<<cars[i].rate_per_hour<<endl;
+
+						if(cars[i].available==true)
+							{
+
+							cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Availability"<<"Available " <<endl;
+							break;
+							}
+						else
+							for(j=1;j<=x;j++)
+							{
+							if(cars[i].plate_num==rcars[j].plate_num)
+							break;
+							}
+
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Rented by"<<customer[j].fullname<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Coustomer ID"<<customer[j].ID<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Sex"<<customer[j].gender<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Age"<<customer[j].age<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Email"<<customer[j].cust_address.email<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"PhoneNo"<<customer[j].cust_address.phone_number<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"City"<<customer[j].cust_address.city<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Town"<<customer[j].cust_address.town<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Dueto"<<rcars[j].duration+ltm->tm_mday <<"/"<<1 + ltm->tm_mon;
+					cout<<"/"<<1900 + ltm->tm_year<<endl;
+					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Price"<<rcars[j].price<<endl;
+				}
+
+			}
+
+	}
+
+           else {              trys++;
+                                    if(trys==4){
+                                   system("cls");
+                                  cout<<"\n\n\n\t\t\t\tso many trial thanks   good bye\n\n\n";
+                                  exit(0);
+                                      }
+
+                                  else {
+                                  system("cls");
+                                  cout<<"\n\n\n\n\t\t\t\t ERROR!  ERROR! ERROR! ";
+                                  cout<<"\n\t\t\t\t enter correct choice:";
+
+                                  goto A;
+
+                                   }
+
+
+          }
+
+
+
+
+	toTerminateOrContinue();
+	}
+
 void Search()
 	{
 	int a, trys=0;
@@ -1078,97 +1183,40 @@ case 5:
 
 else if (y==2){
 
-void Search()
-	{
-	int a, trys=0;
-	A:
-	cout<<"\n\n\t\t\t\tEnter 1 to Search by customer information"<<endl;
-	cout<<"\t\t\t\tEnter 2 to Search by car information \n\nEnter: ";
-	cin>>a;
-	cout<<endl;
-	         if(a==1){
-            system("cls");
-	        search_coustmores(rcars, customer, cars);
-	        }
+    availble_cars(cars);
 
+cout<<"\n\n\n\n\t\t\t\tinput car id you want to modify_";
 
-           else if (a==2){
-          system("cls");
-	      search_cars(rcars, customer, cars);
-	                 }
-          else {                  trys++;
-                                    if(trys==4){
-                                   system("cls");
-                                  cout<<"\n\n\n\t\t\t\tso many trial thanks   good bye\n\n\n";
-                                  exit(0);
-        }
+cin>>n;
+cout<<"\t\t\t\tmodify the "<<endl;
+cout<<"\\t\t\t1. plate_num"<<endl;
+cout<<"\t2. rate_per_hour"<<endl;
+cout<<"\t3. colour _  ";
+cin>>x;
+system("cls");
+switch(x){
+case 1:
+    cout<<"\n\n\t\t\tnew plate numb_ " ;   cin>>cars[n].plate_num;
 
-                                  else {
-                                  system("cls");
-                                  cout<<"\n\n\n\n\t\t\t\t ERROR!  ERROR! ERROR! ";
-                                  cout<<"\n\t\t\t\t enter correct choice:";
+    break;
+case 2:
+    cout<<"\n\n\t\t\tnew rate per hour_";   cin>>cars[n].rate_per_hour;
 
-                                  goto A;
+    break;
+case 3:
+    cout<<"\n\n\t\t\tnew colour_ " ;   cin>>cars[n].colour;
+    break;
+}
+}
+system("cls");
+cout<<"Modification is done  T";
+toTerminateOrContinue();
 
-                                   }
-
-
-          }
-
-
-	}
-	{
-
-							cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Availability"<<"Available " <<endl;
-							break;
-							}
-						else
-							for(j=1;j<=x;j++)
-							{
-							if(cars[i].plate_num==rcars[j].plate_num)
-							break;
-							}
-
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Rented by"<<customer[j].fullname<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Coustomer ID"<<customer[j].ID<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Sex"<<customer[j].gender<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Age"<<customer[j].age<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Email"<<customer[j].cust_address.email<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"PhoneNo"<<customer[j].cust_address.phone_number<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"City"<<customer[j].cust_address.city<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Town"<<customer[j].cust_address.town<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Dueto"<<rcars[j].duration+ltm->tm_mday <<"/"<<1 + ltm->tm_mon;
-					cout<<"/"<<1900 + ltm->tm_year<<endl;
-					cout<<"\t"<<left << setw(nameWidth) << setfill(separator)<<"Price"<<rcars[j].price<<endl;
-				}
-
-			}
-
-	}
-
-           else {              trys++;
-                                    if(trys==4){
-                                   system("cls");
-                                  cout<<"\n\n\n\t\t\t\tso many trial thanks   good bye\n\n\n";
-                                  exit(0);
-                                      }
-
-                                  else {
-                                  system("cls");
-                                  cout<<"\n\n\n\n\t\t\t\t ERROR!  ERROR! ERROR! ";
-                                  cout<<"\n\t\t\t\t enter correct choice:";
-
-                                  goto A;
-
-                                   }
-
-
-          }
+}
 
 
 
 
-	toTerminateOrContinue();
-	}
+
 
 
