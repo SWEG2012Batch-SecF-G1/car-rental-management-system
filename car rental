@@ -878,4 +878,203 @@ void search_cars(rented_cars_info rcar[],customer_info customer[],car_info cars[
 						}
 
 
-					
+				
+void Search()
+	{
+	int a, trys=0;
+	A:
+	cout<<"\n\n\t\t\t\tEnter 1 to Search by customer information"<<endl;
+	cout<<"\t\t\t\tEnter 2 to Search by car information \n\nEnter: ";
+	cin>>a;
+	cout<<endl;
+	         if(a==1){
+            system("cls");
+	        search_coustmores(rcars, customer, cars);
+	        }
+
+
+           else if (a==2){
+          system("cls");
+	      search_cars(rcars, customer, cars);
+	                 }
+          else {                  trys++;
+                                    if(trys==4){
+                                   system("cls");
+                                  cout<<"\n\n\n\t\t\t\tso many trial thanks   good bye\n\n\n";
+                                  exit(0);
+        }
+
+                                  else {
+                                  system("cls");
+                                  cout<<"\n\n\n\n\t\t\t\t ERROR!  ERROR! ERROR! ";
+                                  cout<<"\n\t\t\t\t enter correct choice:";
+
+                                  goto A;
+
+                                   }
+
+
+          }
+
+
+	}
+
+	//function to accept return cars
+void back_car(rented_cars_info rcar[],customer_info customer[],car_info cars[])
+	{
+	char Name[20];
+	int Cust_id;
+	string Plate;
+	int Car_id;
+	cout<<"\n\n\t\t\tEnter Customer ID: ";
+	cin>>Cust_id;
+	cout<<"\n\n\t\t\tEnter Car ID: ";
+	cin>>Car_id;
+	int x=cust_count(customer);
+	int y=sizes,i,j;
+	bool returned;
+
+	for( i=0;i<=x;i++)
+		{
+		if(customer[i].ID==Cust_id)
+		{
+		    if(customer[i].available==true)
+            {
+                customer[i].available=false;
+                rcars[i].rented=false;
+                returned=true;
+                break;
+            }
+            else
+            {
+                cout<<"\n\n\n\n"<<customer[i].fullname<<"  is not rented the car"<<endl;
+                toTerminateOrContinue();
+
+            }
+
+
+		}
+
+		}
+
+    {
+      for( j=0;j<=x;j++)
+		{
+
+		if(cars[j].car_id==Car_id)
+		{
+		    if(rcars[i].plate_num==cars[j].plate_num)
+            {
+               cars[j].available=true;
+               break;
+            }
+
+            else
+                {
+                cout<<"\n\n\t\t\t"<<cars[j].brand<<" is not rented by "<<rcars[i].fullname<<endl;
+                break;
+                }
+
+		}
+
+		}
+
+
+system("cls");
+cout<<"\n\n\n\n\n\t\tCUSTOMER    : "<<customer[i].fullname<<endl;
+cout<<"\t\tRETURNED CAR: "<<cars[j].brand<<"\n\t\tPLATE  NUM: "<<cars[j].plate_num;
+
+cout<<"\n\n\t\tCompleted "<<endl;
+		toTerminateOrContinue();
+
+
+
+	}
+
+}
+	//function to display rented cars
+void rented_cars(rented_cars_info rcars[])
+{
+  time_t now = time(0);
+   tm *ltm = localtime(&now);
+
+	cout << "full Name     \t   phone no\t   email\t            Brand\t   plate no       price \t dueto    " << endl;
+	cout << "=================================================================================================================" << endl;
+
+	for (int i = 0; i <100; i++){
+            const char separator    = ' ';
+    const int nameWidth     = 15;
+    const int numWidth      = 15;
+
+    if(rcars[i].rented==true){
+    cout << left << setw(20) << setfill(separator)<<rcars[i].fullname;
+    cout << left << setw(numWidth) << setfill(separator) << rcars[i].phone_number;
+    cout << left << setw(25)<< setfill(' ') << rcars[i].email;
+    cout << left << setw(numWidth) << setfill(separator) << rcars[i].brand;
+    cout << left << setw(numWidth) << setfill(separator) << rcars[i].plate_num ;
+    cout << left << setw(numWidth) << setfill(separator) << rcars[i].price;
+    cout << left << setw(1) << setfill(separator) << rcars[i].duration+ltm->tm_mday<<"/"<< 1 + ltm->tm_mon<<"/"<< 1900 + ltm->tm_year<<endl;
+
+cout << "==================================================================================================================";
+       cout<<endl<<endl;
+    }
+
+	}
+  toTerminateOrContinue();
+
+
+
+}
+
+
+void modify_info(car_info cars[],customer_info customer[]){
+    cout<<setw(50)<<"========================================================================================================================"<<endl;
+    cout<<setw(70)<<"  INFORMATION MODIFICATION  PAGE"<<endl;
+    cout<<setw(50)<<"========================================================================================================================\n\n\n\n" << endl;
+    cout << "\n\n";
+
+    int n,x,y;
+ cout<<"\\t\t\tmodify 1. customer info"<<endl;
+ cout<<"\t\t\t 2. car info_";
+   cin>>y;
+if (y==1){
+     availble_cust(customer);
+    cout<<"i\n\n\t\t\t\nput customer id you want to modify_";
+cin>>n;
+system("cls");
+cout<<"modify the "<<endl;
+cout<<"\t1. customers age"<<endl;
+cout<<"\t2. customers city"<<endl;
+cout<<"\t3. customers town"<<endl;
+cout<<"\t4. customers email"<<endl;
+cout<<"\t5. customers phone number _  ";
+cin>>x;
+system("cls");
+cout<<"\n\n\n\n";
+switch(x){
+case 1:
+    cout<<"new age_ " ;    cin>>customer[n].age;
+
+    break;
+case 2:
+    cout<<"new city_";     cin>>customer[n].cust_address.city;
+
+    break;
+case 3:
+    cout<<"new town_ " ;   cin>>customer[n].cust_address.town;
+
+case 4:
+    cout<<"new email_";     cin>>customer[n].cust_address.email;
+
+    break;
+
+case 5:
+    cout<<"new phone number_"; cin>>customer[n].cust_address.phone_number;
+
+ }
+
+}
+
+
+else if (y==2){
+	
